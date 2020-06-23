@@ -24,7 +24,7 @@ Meticulous Oversight Engine -- Testing, logs, and validation
 
 
 * Free software: MIT license
-* Documentation: https://moe.readthedocs.io.
+* Documentation: https://qm-moe.readthedocs.io.
 
 
 Features
