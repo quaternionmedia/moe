@@ -5,7 +5,8 @@ Credits
 Development Lead
 ----------------
 
-* Peter Kagstrom <peter.kagstrom@gmail.com>
+* [Peter Kagstrom](https://github.com/subcontrabass) - <peter.kagstrom@gmail.com>
+* [Harpo](https://github.com/mrharpo) - <harpo@harpo.me>
 
 Contributors
 ------------

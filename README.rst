@@ -29,8 +29,27 @@ Meticulous Oversight Engine -- Testing, logs, and validation
 
 Features
 --------
-
 * TODO
+
+
+Dev
+-------
+install venv
+`sudo apt-get install python3-venv`
+
+create venv
+`python3 -m venv moenv` (change `moenv` to your desired environment name)
+
+activate
+`source moenv/bin/activate`
+
+install dev requirements
+`pip install -r requirements_dev.txt`
+
+Coverage
+-------
+`make coverage`
+
 
 Credits
 -------
