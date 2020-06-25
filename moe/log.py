@@ -4,7 +4,7 @@ from time import strftime
 import subprocess as sp
 import json
 from pprint import pprint, pformat
-# from moe.speech import say
+# from speech import say
 
 ###neet gtts-cli and sox
 # @dependsOn()
@@ -17,15 +17,12 @@ audiolog = f'output/audios/{timestr}_audiolog.mp3'
 
 logger = logging.getLogger('moe')
 
-def init():
-    startLogging()
-
 def dataLog(m,fileout=txtlog,save=True,verbose=True):
     logger.info(m)
     if(verbose):
         print(m)
 
-def log(m,save=True,audio=False,lang=defaultlang,data={},verbose=True):
+def log(m,level='info',save=True,audio=False,lang=defaultlang,data={},verbose=True):
     if(save):
         dataLog(pformat(data), verbose)
     # if(audio):
@@ -42,15 +39,15 @@ def startLogging():
     syshandler = logging.StreamHandler(sys.stdout)
     syshandler.setLevel(logging.INFO)
 
-    # filehandler = logging.FileHandler(txtlog)
-    # filehandler.setLevel(logging.INFO)
+    filehandler = logging.FileHandler(txtlog)
+    filehandler.setLevel(logging.INFO)
 
     formatter = logging.Formatter("{'logtime':'%(asctime)s', 'logname':%(name)s, 'levelname':%(levelname)s, 'message':%(message)s")
     syshandler.setFormatter(formatter)
-    # filehandler.setFormatter(formatter)
+    filehandler.setFormatter(formatter)
 
     logger.addHandler(syshandler)
-    # logger.addHandler(filehandler)
+    logger.addHandler(filehandler)
 
 # def main():
 #     say('one starting')
@@ -61,6 +58,4 @@ def startLogging():
 
 #
 if __name__ == '__main__':
-#     main()
-# else:
-    init()
+    startLogging()

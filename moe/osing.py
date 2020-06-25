@@ -1,6 +1,13 @@
 import os
 import subprocess as sp
 
+def read(path):
+    with open(path) as file:
+        file_contents = file.read()
+
+        #parse
+        return file_contents
+
 def mkdir(path: str):
     if not os.path.exists(path):
         os.makedirs(path)

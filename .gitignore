@@ -1,4 +1,5 @@
 output/*
+moe/output/*
 
 share/
 *.whl
