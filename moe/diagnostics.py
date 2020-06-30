@@ -1,7 +1,7 @@
 import pytest
 from pytest_jsonreport.plugin import JSONReport
 from datetime import datetime as dt
-from moe.log import log
+from log import log
 
 
 def t():

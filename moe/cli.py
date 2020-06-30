@@ -1,7 +1,7 @@
 """Console script for moe."""
 import sys
 import click
-from moe.diagnostics import runSelfTest
+from diagnostics import runSelfTest
 
 @click.command()
 def main(args=None):

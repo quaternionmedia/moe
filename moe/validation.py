@@ -1,14 +1,16 @@
-from lark import Lark
-import os
-from jsonschema import validate
+from jsonschema import Draft7Validator
 
-
+# TODO: move to datatypes folder
 nodeschema = {
      "type" : "object",
      "properties" : {
          "id" : {"type" : "number"},
          "data" : {"type" : "object"},
      },
+     "required":[
+               "id",
+               "data"
+            ]
 }
 
 edgeschema = {
@@ -19,6 +21,11 @@ edgeschema = {
          "dest" : {"type" : "number"},
          "weight" : {"type" : "object"}
      },
+     "required":[
+               "id",
+               "source",
+               "dest"
+            ]
 }
 
 graphschema = {
@@ -29,36 +36,38 @@ graphschema = {
          "edges" : {"type" : "array",
             "items":edgeschema},
      },
+     "required":[
+               "nodes",
+               "edges"
+            ]
 }
 
+# TODO: 
+# def isObj(str):
+#     return parse.forJson(str)
 
-larkpath = '/home/pk/repos/lark'
+def isNode(obj):
+    v = Draft7Validator(nodeschema)
+    return v.is_valid(obj)
 
-parser = Lark(open(os.path.join(larkpath, 'examples/lark.lark')), parser="lalr")
+def isEdge(obj):
+    v = Draft7Validator(edgeschema)
+    return v.is_valid(obj)
 
-grammar_files = [
-    os.path.join(larkpath, 'examples/python2.lark'),
-    os.path.join(larkpath, 'examples/python3.lark'),
-    os.path.join(larkpath, 'examples/lark.lark'),
-    os.path.join(larkpath, 'examples/relative-imports/multiples.lark'),
-    os.path.join(larkpath, 'examples/relative-imports/multiple2.lark'),
-    os.path.join(larkpath, 'examples/relative-imports/multiple3.lark'),
-    # 'lark/grammars/common.lark',
-]
+def isGraph(obj):
+    v = Draft7Validator(graphschema)
+    return v.is_valid(obj)
 
-def parseGrammar():
-    for grammar_file in grammar_files:
-        grammarTree = parser.parse(open(grammar_file).read())
-    return grammarTree
-
-def checkType(data):
-    return type(data)
-
-def nodeSchema():
-
-    print(validate(instance={"id" : 65, "data" : {}}, schema=nodeschema))
 
 
 if __name__ == '__main__':
-    # parseGrammar()
-    nodeSchema()
+    tests = [{"id" : 65, "data" : {}},
+            {"id" : 65, "data" : 'tjena'},
+            {"id" : 65},
+            {"id" : True, "data" : {}}
+            ]
+
+    for test in tests:
+        print(isNode(test))
+        print(isEdge(test))
+        print(isGraph(test))

@@ -1,61 +1,42 @@
 import logging
-import sys
-from time import strftime
-import subprocess as sp
-import json
-from pprint import pprint, pformat
-# from speech import say
+from pprint import pprint
 
-###neet gtts-cli and sox
-# @dependsOn()
+def getLogger(name='moe'):
+    logname = name+'.log'
 
-timestr = strftime('%Y%m%d-%H%M%S')
-txtlog = f'output/texts/{timestr}.txt'
+    # set up logging to file - see previous section for more details
+    logging.basicConfig(level=logging.DEBUG,
+                        format="{'time':'%(asctime)s', 'name':'%(name)s', 'level':'%(levelname)s', 'message':'%(message)s'}",
+                        datefmt='%Y-%m-%d|%H:%M:%S',
+                        filename=f'logs/{logname}',
+                        filemode='a')
 
-defaultlang = 'en-uk'
-audiolog = f'output/audios/{timestr}_audiolog.mp3'
+    # define a Handler which writes INFO messages or higher to the sys.stderr
+    console = logging.StreamHandler()
+    console.setLevel(logging.DEBUG)
 
-logger = logging.getLogger('moe')
+    # set a format which is simpler for console use
+    formatter = logging.Formatter('%(name)-6s: %(levelname)-8s %(message)s')
 
-def dataLog(m,fileout=txtlog,save=True,verbose=True):
-    logger.info(m)
-    if(verbose):
-        print(m)
+    # tell the handler to use this format
+    console.setFormatter(formatter)
 
-def log(m,level='info',save=True,audio=False,lang=defaultlang,data={},verbose=True):
-    if(save):
-        dataLog(pformat(data), verbose)
-    # if(audio):
-    #     say(m)
-    if(verbose):
-        print(m)
-    return True
+    # add the handler to the root logger
+    rootlog = logging.getLogger('')
+    rootlog.addHandler(console)
 
 
-def startLogging():
+    rlog = logging.getLogger(logname)
+    return rlog
 
-    logger.setLevel(logging.INFO)
+def main():
+    log = getLogger()
+    log.debug('Quick zephyrs blow, vexing daft Jim.')
+    log.info('How quickly daft jumping zebras vex.')
+    log.warning('Jail zesty vixen who grabbed pay from quack.')
+    log.error('The five boxing wizards jump quickly.')
+    log.critical('oh no')
 
-    syshandler = logging.StreamHandler(sys.stdout)
-    syshandler.setLevel(logging.INFO)
 
-    filehandler = logging.FileHandler(txtlog)
-    filehandler.setLevel(logging.INFO)
-
-    formatter = logging.Formatter("{'logtime':'%(asctime)s', 'logname':%(name)s, 'levelname':%(levelname)s, 'message':%(message)s")
-    syshandler.setFormatter(formatter)
-    filehandler.setFormatter(formatter)
-
-    logger.addHandler(syshandler)
-    logger.addHandler(filehandler)
-
-# def main():
-#     say('one starting')
-#     init()
-#     say('two booting complete')
-
-    # say('nu pratar vi svenska', lang='sv')
-
-#
 if __name__ == '__main__':
-    startLogging()
+    main()

@@ -1,6 +1,10 @@
 output/*
 moe/output/*
 
+node_modules/*
+
+.travis.yml
+
 share/
 *.whl
 

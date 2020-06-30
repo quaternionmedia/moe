@@ -67,6 +67,22 @@ moe.osing module
     :undoc-members:
     :show-inheritance:
 
+moe.parse module
+----------------
+
+.. automodule:: moe.parse
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+moe.scrape module
+-----------------
+
+.. automodule:: moe.scrape
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 moe.speech module
 -----------------
 
