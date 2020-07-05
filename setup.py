@@ -10,7 +10,12 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=7.0', ]
+requirements = ['Click>=7.0',
+                'rethinkdb>=1.14.0',
+                'beautifulsoup4>=4.9.1',
+                'lark-parser>=0.8.5',
+                'jsonschema>=3.2.0',
+                'gTTS>=2.1.1']
 
 setup_requirements = ['pytest-runner', ]
 
