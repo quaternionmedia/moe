@@ -36,13 +36,16 @@ def imgsFromUrl(url='https://www.quaternion.media/projects', linkid='data-src', 
 
 @click.command()
 @click.option('-w', '--word', default='quaternion', prompt='What word to get images of?')
-def download_google(word='quaternion'):
+@click.option('-d', '--dest', default='.', prompt='Where to save images')
+@click.option('-n', '--download/--no-download', default=True, prompt='download?')
+def download_google(word='quaternion', dest='', download=True):
     url = 'https://www.google.com/search?q=' + word + '&client=opera&hs=cTQ&source=lnms&tbm=isch&sa=X&ved=0ahUKEwig3LOx4PzKAhWGFywKHZyZAAgQ_AUIBygB&biw=1920&bih=982'
     page = requests.get(url).text
     soup = BeautifulSoup(page, 'html.parser')
     for raw_img in soup.find_all('img'):
        link = raw_img.get('src')
-       os.system("wget " + link)
+       if(download): os.system(f'wget -P {dest} {link}')
+
 
 @click.command()
 @click.option('-w', '--word', default='quaternion', prompt='What word to get images of?')
@@ -68,8 +71,8 @@ def download_baidu(word='quaternion'):
         i += 1
 
 @click.command()
-@click.option('--cmd', prompt='What to scrape [url/google/baidu]')
-def cli(cmd: str):
+@click.option('--cmd', prompt='where to get photos?')
+def cli(cmd):
     if(cmd == 'url'):
         imgsFromUrl()
     elif(cmd == 'google'):
