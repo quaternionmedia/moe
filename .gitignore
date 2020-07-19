@@ -1,6 +1,8 @@
 output/*
 moe/output/*
-
+moenv/
+website/node_modules
+website/*.lock
 moe/rethinkdb_data
 
 node_modules/*

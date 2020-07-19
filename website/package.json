@@ -1,0 +1,26 @@
+{
+  "name": "moe",
+  "version": "0.0.1",
+  "description": "meticulous oversight engine",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel watch src/* --hmr-port=1234"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quaternionmedia/moe.git"
+  },
+  "author": "Quaternion Media",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/quaternionmedia/moe/issues"
+  },
+  "homepage": "https://github.com/quaternionmedia/moe#readme",
+  "devDependencies": {
+    "parcel": "^1.12.4"
+  },
+  "dependencies": {
+    "mithril": "^2.0.4"
+  }
+}
