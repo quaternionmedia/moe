@@ -1,0 +1,17 @@
+version: '3.3'
+
+networks:
+  web:
+    external:
+      name: web
+
+services:
+  api:
+    networks:
+      - web
+    labels:
+      - traefik.http.routers.moe.rule=Host(`moe.quaternion.media`)
+      - traefik.http.routers.moe.tls=true
+      - traefik.http.routers.moe.tls.certresolver=le
+      - traefik.http.routers.moe.entrypoints=websecure
+      - traefik.docker.network=web

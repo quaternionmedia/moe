@@ -1,0 +1,38 @@
+#!/bin/sh
+VERSION=v0.0.1
+
+if [ $1 = "version" -o $1 = "v" -o $1 = "-v" ]; then
+  echo $VERSION
+
+# Starts in development (optional "--build")
+elif [ $1 = "dev" ] || [ -z $1 ]; then
+  if [ !-z ]; then shift; fi
+  echo "Moe running dev $1"
+  docker-compose -f docker-compose.yml -f dev.yml up $1
+
+# Starts in production.
+elif [ $1 = "prod" -o $1 = "production" ]; then
+  shift
+  echo "Moe running production $1"
+  docker-compose down && \
+  docker-compose -f docker-compose.yml -f production.yml up --build -d $1
+
+# Installs the dependencies.
+elif [ $1 = "i" -o $1 = "install" ]; then
+  shift
+  echo "installing dependencies"
+  make install
+
+elif [ $1 = "restart" -o $1 = "r" ]; then
+  shift
+  docker-compose -f docker-compose.yml -f production.yml restart
+
+elif [ $1 = "sh" ]; then
+  shift
+  docker-compose -f docker-compose.yml exec moe sh
+
+elif [ $1 = "log" -o $1 = "logs" -o $1 = "l" ]; then
+  shift
+  docker-compose logs -f
+
+fi

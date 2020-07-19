@@ -1,0 +1,6 @@
+FROM node:alpine
+
+RUN apk add util-linux make
+WORKDIR /app
+RUN npm upgrade -g yarn
+CMD ["/app/node_modules/.bin/parcel", "build", "/app/src/index.html"]

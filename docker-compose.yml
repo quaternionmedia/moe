@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+
+  website:
+    build: ./website/
+    image: alfred_site
+    volumes:
+      - "./website/:/app/"
+
+  moe:
+    build: ./moe/
+    image: alfred_api
+    depends_on:
+      - website
+    volumes:
+      - "./moe/:/app/"
+      - "./website/dist/:/app/dist/"
