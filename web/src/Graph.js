@@ -1,4 +1,5 @@
 import m from 'mithril'
+import render from 'mithril-node-render'
 
 import cytoscape from 'cytoscape'
 import edgehandles from 'cytoscape-edgehandles'
@@ -13,8 +14,37 @@ import cxtmenu from 'cytoscape-cxtmenu'
 cytoscape.use( cxtmenu )
 
 import { style } from './style.js'
+import '../node_modules/material-design-icons-iconfont/dist/material-design-icons.css'
 
-let cy, eh, elements
+menuOptions = {
+					selector: 'node, edge',
+
+					commands: [
+						{
+							content: render.sync(m('.material-icons', {}, 'functions')),
+							select: function(ele){
+								console.log( ele.id() );
+							},
+						},
+
+						{
+							content: render.sync(m('.material-icons', {}, 'save')),
+							select: function(ele){
+								console.log( ele.data('name') );
+							},
+						},
+
+						{
+							content: 'Text',
+							select: function(ele){
+								console.log( ele.position() );
+							},
+							enabled: false
+
+						}
+					]
+				}
+
 export var cy, eh, elements
 let data = [
 	{ data: { id: 'a' } },
@@ -42,7 +72,7 @@ for (var i = 0; i < 10; i++) {
 }
 
 export function Graph() {
-
+	
   return {
     oncreate: vnode => {
 			console.log('cy init')
