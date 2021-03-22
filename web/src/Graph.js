@@ -1,4 +1,5 @@
 import m from 'mithril'
+
 import cytoscape from 'cytoscape'
 import edgehandles from 'cytoscape-edgehandles'
 cytoscape.use( edgehandles )
@@ -8,9 +9,13 @@ import klay from 'cytoscape-klay'
 cytoscape.use( klay )
 import coseBilkent from 'cytoscape-cose-bilkent'
 cytoscape.use( coseBilkent )
+import cxtmenu from 'cytoscape-cxtmenu'
+cytoscape.use( cxtmenu )
+
 import { style } from './style.js'
 
 let cy, eh, elements
+export var cy, eh, elements
 let data = [
 	{ data: { id: 'a' } },
 	{ data: { id: 'b' } },
@@ -37,6 +42,7 @@ for (var i = 0; i < 10; i++) {
 }
 
 export function Graph() {
+
   return {
     oncreate: vnode => {
 			console.log('cy init')
@@ -48,6 +54,7 @@ export function Graph() {
              },
         style: style,
       })
+			let menu = cy.cxtmenu(menuOptions)
     },
     view: vnode => {
       return m('.graph', {}, )

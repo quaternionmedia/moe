@@ -12,7 +12,7 @@ elif [ $1 = "install" -o $1 = "i" ]; then
   docker run -it -v $(pwd)/web:/app -w /app node:current-alpine yarn add "$@"
 
 elif [ $1 = "build" ]; then
-  docker run -it -v $(pwd)/web:/app -w /app -p 5555:5555 node:current-alpine yarn parcel watch --port 5555 src/index.html
+  docker run -it -v $(pwd)/web:/app -w /app -p 5555:5555 node:current-alpine yarn parcel watch --no-cache --port 5555 src/index.html
 
 elif [[ $1 = "run" || $1 =~ "serve" ]]; then
   # moe
