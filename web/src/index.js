@@ -3,8 +3,6 @@ import { Layout } from './Menu'
 import { GraphSelector } from './Graph'
 import './style.css'
 
-let cy, eh, elements
-
 
 export function Button() {
   return {

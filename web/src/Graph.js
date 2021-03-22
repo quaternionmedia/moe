@@ -10,32 +10,33 @@ import coseBilkent from 'cytoscape-cose-bilkent'
 cytoscape.use( coseBilkent )
 import { style } from './style.js'
 
-export function Graph() {
-	let data = [
-		{ data: { id: 'a' } },
-  	{ data: { id: 'b' } },
-		{ data: {
-        id: 'ab',
-        source: 'a',
-        target: 'b'
-      }
+let cy, eh, elements
+let data = [
+	{ data: { id: 'a' } },
+	{ data: { id: 'b' } },
+	{ data: {
+			id: 'ab',
+			source: 'a',
+			target: 'b'
 		}
-	]
-	for (var i = 0; i < 10; i++) {
-		data.push({
-			data: { id: 'node' + i }
-			}
-		)
-		let source = 'node' + i;
-		data.push({
-				data: {
-						id: 'edge' + i,
-						source: source,
-						target: (i % 2 == 0 ? 'a' : 'b')
-				}
-		})
 	}
-	console.log('data', data)
+]
+for (var i = 0; i < 10; i++) {
+	data.push({
+		data: { id: 'node' + i }
+		}
+	)
+	let source = 'node' + i;
+	data.push({
+			data: {
+					id: 'edge' + i,
+					source: source,
+					target: (i % 2 == 0 ? 'a' : 'b')
+			}
+	})
+}
+
+export function Graph() {
   return {
     oncreate: vnode => {
 			console.log('cy init')
