@@ -15,6 +15,7 @@ export function Links() {
   return {
     view: vnode => {
       return [
+        m(Link, {href:'/graph', id: 'graph'}, 'graph'),
       ]
     }
   }

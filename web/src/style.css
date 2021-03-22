@@ -25,3 +25,8 @@ a {
   background: #8883;
 } 
 
+.graph {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
