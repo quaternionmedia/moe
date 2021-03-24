@@ -1,0 +1,29 @@
+version: '3.9'
+
+networks:
+  moe:
+  falcon:
+    driver: bridge
+services:
+  web:
+    build: ./web/
+    image: moe_web
+    volumes:
+      - ./web/:/app/
+    ports:
+      - 5555:5555
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: moe_api
+    volumes:
+      - ./moe/:/moe/moe
+      - ./web/dist/:/app/dist/
+      # - ./web/static/:/app/static/
+    networks:
+      - moe
+    environment:
+      - WEB_DIST=/app/dist/
+    ports:
+      - 5000:80
