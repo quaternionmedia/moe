@@ -17,41 +17,17 @@ import { style } from './style.js'
 import '../node_modules/material-design-icons-iconfont/dist/material-design-icons.css'
 
 import { menuOptions } from './CtxMenu'
+import { moedata } from './Moe'
 
 export var cy, eh, elements
-let data = [
-	{ data: { id: 'a' } },
-	{ data: { id: 'b' } },
-	{ data: {
-			id: 'ab',
-			source: 'a',
-			target: 'b'
-		}
-	}
-]
-for (var i = 0; i < 10; i++) {
-	data.push({
-		data: { id: 'node' + i }
-		}
-	)
-	let source = 'node' + i;
-	data.push({
-			data: {
-					id: 'edge' + i,
-					source: source,
-					target: (i % 2 == 0 ? 'a' : 'b')
-			}
-	})
-}
 
 export function Graph() {
-
   return {
     oncreate: vnode => {
 			console.log('cy init')
       cy = cytoscape({
         container: vnode.dom,
-        elements: data,
+        elements: moedata,
         layout: {
                name: 'circle',
              },
