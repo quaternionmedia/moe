@@ -16,6 +16,7 @@ elif [ $1 = "build" ]; then
 
 elif [[ $1 = "run" || $1 =~ "serve" ]]; then
   # moe
-  uvicorn --reload --host 0.0.0.0 --port 5000 main:app
+  # uvicorn --reload --host 0.0.0.0 --port 5000 main:app
+  docker-compose up "$@"
 
 fi
