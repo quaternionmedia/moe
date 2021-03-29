@@ -14,9 +14,16 @@ elif [ $1 = "install" -o $1 = "i" ]; then
 elif [ $1 = "build" ]; then
   docker run -it -v $(pwd)/web:/app -w /app -p 5555:5555 node:current-alpine yarn parcel watch --no-cache --port 5555 src/index.html
 
-elif [[ $1 = "run" || $1 =~ "serve" ]]; then
+elif [[ $1 = "run" || $1 =~ "serve"  || $1 =~ "dev" ]]; then
   # moe
   # uvicorn --reload --host 0.0.0.0 --port 5000 main:app
-  docker-compose up "$@"
+  docker-compose -f docker-compose.yml -f dev.yml up "$@"
+
+# Starts in production.
+elif [ $1 = "prod" -o $1 = "production" -o $1 = "p" ]; then
+  shift
+  echo "moe running production $1"
+  docker-compose down && \
+  docker-compose -f docker-compose.yml -f production.yml up --build -d $1
 
 fi

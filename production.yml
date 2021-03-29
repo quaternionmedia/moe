@@ -1,0 +1,25 @@
+version: '3.8'
+
+networks:
+  web:
+    external:
+      name: web
+
+services:
+  web:
+    command: yarn parcel build
+  api:
+    networks:
+      - web
+    labels:
+      - traefik.http.services.moe.loadbalancer.server.port=80
+      - traefik.http.routers.moe.rule=Host(`moe.quaternion.media`)
+      - traefik.http.routers.moe.tls=true
+      - traefik.http.routers.moe.tls.certresolver=le
+      - traefik.http.routers.moe.entrypoints=websecure
+      - traefik.docker.network=web
+  #   environment:
+  #     - MOE_PRODUCTION=true
+  # db:
+  #   ports:
+  #     - 192.168.192.52:27017:27017
