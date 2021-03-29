@@ -26,4 +26,8 @@ elif [ $1 = "prod" -o $1 = "production" -o $1 = "p" ]; then
   docker-compose down && \
   docker-compose -f docker-compose.yml -f production.yml up --build -d $1
 
+elif [ $1 = "log" -o $1 = "l" ]; then
+  shift
+  docker-compose logs "$@"
+
 fi
