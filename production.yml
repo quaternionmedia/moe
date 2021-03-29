@@ -7,7 +7,7 @@ networks:
 
 services:
   web:
-    command: yarn parcel build
+    command: yarn parcel build /app/src/index.html
   api:
     networks:
       - web
