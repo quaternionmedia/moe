@@ -17,9 +17,12 @@ import { style } from './style.js'
 import '../node_modules/material-design-icons-iconfont/dist/material-design-icons.css'
 
 import { menuOptions } from './CtxMenu'
-import { moedata } from './Moe'
+import { moedata, id, newNode } from './Moe'
+import { testPosition, orderRadially, node, edge, graph} from './Collections'
 
 export var cy, eh, elements
+
+let sortAlgos = ['grid', 'circle', 'concentric', 'random', 'dagre', 'klay', 'cose-bilkent' ]
 
 export function Graph() {
   return {
@@ -28,13 +31,22 @@ export function Graph() {
       cy = cytoscape({
         container: vnode.dom,
         elements: moedata,
-        layout: {
-               name: 'circle',
-             },
+        // layout: {
+        //        name: 'circle',
+        //      },
         style: style,
       })
 			let menu = cy.cxtmenu(menuOptions)
-    },
+
+      cy.add(
+        {data: { id:id(), name:'moe', x:window.innerWidth/2, y:window.innerHeight/2}}
+          ).on('tap', function(e){orderRadially()})
+      cy.add(
+        cy.add({data: { id:id(), name:'node', x:window.innerWidth/2, y:window.innerHeight/2}}
+      ).on('tap', function(e){cy.add(newNode (Date(), e))})
+      )
+      orderRadially()
+      },
     view: vnode => {
       return m('.graph', {}, )
     }
@@ -70,7 +82,7 @@ export function GraphSelector() {
 						})
 						layout.run()
 					}
-				}, ['grid', 'circle', 'concentric', 'random', 'dagre', 'klay', 'cose-bilkent' ]),
+				}, sortAlgos),
 
 				m(Graph)
 			]
