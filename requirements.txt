@@ -1,2 +1,4 @@
 pluggy
 fastapi
+aiofiles
+uvicorn

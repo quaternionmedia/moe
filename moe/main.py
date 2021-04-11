@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 from starlette.staticfiles import StaticFiles
+from config import WEB_DIST
 
 app = FastAPI()
 
-app.mount("/", StaticFiles(directory='web/dist', html=True), name="dist")
+app.mount('/', StaticFiles(directory=WEB_DIST, html=True), name='dist')
 
 
 def main():
