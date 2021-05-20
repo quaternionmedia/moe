@@ -6,7 +6,7 @@ elif [ $1 = "init" ]; then
   shift
   pip install -r requirements.txt
   docker run -it -v $(pwd)/web:/app -w /app node:current-alpine yarn install
-  
+
 elif [ $1 = "install" -o $1 = "i" ]; then
   shift
   docker run -it -v $(pwd)/web:/app -w /app node:current-alpine yarn add "$@"

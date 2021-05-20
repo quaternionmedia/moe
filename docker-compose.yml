@@ -19,3 +19,19 @@ services:
       - WEB_DIST=/app/dist/
     ports:
       - 5000:80
+  # ingest:
+  #   build: ./ingest/
+  #   image: moe_ingest
+  #     volumes:
+  #       - ./ingest/:/app/
+  # mongo:
+  #   image : mongo
+  #   container_name: moe_mongo
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #   volumes:
+  #     - ./db/:/data/db
+  #   ports:
+  #     - 27017:27017
+  #   restart: unless-stopped
