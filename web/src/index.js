@@ -1,6 +1,6 @@
 import m from 'mithril'
 import { Layout } from './Menu'
-import { GraphSelector } from './cy'
+import { Graph } from './cy'
 import './style.css'
 
 
@@ -23,5 +23,5 @@ export function Home() {
 
 m.route(document.body, "/", {
     '/': { render: () => m(Layout, m(Home)) },
-    '/graph': { render: () => m(Layout, m(GraphSelector)) },
+    '/graph': { render: () => m(Layout, m(Graph)) },
 })
