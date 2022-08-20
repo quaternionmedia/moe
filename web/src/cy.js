@@ -38,6 +38,16 @@ export function Graph() {
       })
 			let menu = cy.cxtmenu(menuOptions)
 
+            // enables edge handles extension
+            eh = cy.edgehandles({
+                preview: true,
+                edgeParams: function(sourceNode, targetNode) {
+                    return {
+                        source: sourceNode.id(),
+                        target: targetNode.id(),
+                    }
+                }
+            })
       cy.add(
         {data: { id:id(), name:'moe', x:window.innerWidth/2, y:window.innerHeight/2}}
           ).on('tap', function(e){orderRadially()})
