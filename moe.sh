@@ -4,9 +4,9 @@ if [ $1 = "version" -o $1 = "v" -o $1 = "-v" ]; then
   echo $VERSION
 elif [ $1 = "init" ]; then
   shift
-  pip install -r requirements.txt
-  docker run -it -v $(pwd)/web:/app -w /app node:current-alpine yarn install
-  
+  docker compose build
+  docker compose run web yarn install
+
 elif [ $1 = "install" -o $1 = "i" ]; then
   shift
   docker run -it -v $(pwd)/web:/app -w /app node:current-alpine yarn add "$@"
