@@ -10,7 +10,6 @@ body {
 a {
   color: white;
   text-decoration: none;
-
 }
 
 .layout {
@@ -20,10 +19,10 @@ a {
 .menu {
   display: flex;
   justify-content: space-between;
-  margin: 1em 1em .5em;
-  padding: .5em 1em;
+  margin: 1em 1em 0.5em;
+  padding: 0.5em 1em;
   background: #8883;
-} 
+}
 
 .graph {
   position: absolute;
