@@ -1,0 +1,33 @@
+name: website deploy
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📰 Checkout
+        uses: actions/checkout@v3
+
+      - name: 🚧 Install dependencies
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: 🧶 Install yarn
+        run: yarn install
+
+      - name: 🏗️ Build files
+        run: yarn parcel build --public-url /midiphonor src/index.html
+
+      - name: ⛵ Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
