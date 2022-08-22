@@ -25,7 +25,7 @@ jobs:
         working-directory: web
 
       - name: 🏗️ Build files
-        run: yarn parcel build --public-url /midiphonor src/index.html
+        run: yarn parcel build --public-url /moe src/index.html
         working-directory: web
 
       - name: ⛵ Deploy
