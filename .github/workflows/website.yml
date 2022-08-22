@@ -1,4 +1,4 @@
-name: website deploy
+name: 🕸️ Website deploy
 on:
   push:
     branches:
@@ -15,7 +15,7 @@ jobs:
       - name: 📰 Checkout
         uses: actions/checkout@v3
 
-      - name: Setup node
+      - name: ☊ Setup node
         uses: actions/setup-node@v3
         with:
           node-version: '18'
